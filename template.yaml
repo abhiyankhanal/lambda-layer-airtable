@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM Template for Lambda function with Airtable and XLSX.js libraries in a layer.
+
+Resources:
+  # Lambda Layer definition
+  AirtableXLSXLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: AirtableXLSXLayer
+      Description: Layer containing Airtable and XLSX libraries
+      ContentUri: ./layer/
+      CompatibleRuntimes:
+        - nodejs14.x
+        - nodejs16.x
+      LicenseInfo: 'MIT'
+
+  # Lambda Function using the layer
+  MyLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties: 
+      Handler: handler.handler
+      Runtime: nodejs16.x
+      CodeUri: ./src/  # Points to the directory containing your Lambda function code
+      Layers:
+        - !Ref AirtableXLSXLayer  # Reference the layer created above
+      MemorySize: 128
+      Timeout: 10
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonS3ReadOnlyAccess  # Example if you're working with S3 files
+
+Outputs:
+  LambdaFunction:
+    Description: "The Lambda function ARN"
+    Value: !GetAtt MyLambdaFunction.Arn
+
+  LambdaLayerVersionArn:
+    Description: "Lambda Layer Version ARN"
+    Value: !Ref AirtableXLSXLayer

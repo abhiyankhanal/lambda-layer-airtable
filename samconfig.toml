@@ -1,0 +1,18 @@
+version=0.1
+
+[default.build.parameters]
+cached="true"
+parallel="true"
+beta_features = true
+
+[default.deploy.parameters]
+stack_name="lambda-layer-common-function"
+region="us-west-2"
+capabilities="CAPABILITY_NAMED_IAM"
+fail_on_empty_changeset = false
+resolve_s3 = true
+s3_prefix = "lambda-layer-common-function"
+profile = "personal"
+disable_rollback = true
+image_repositories = []
+

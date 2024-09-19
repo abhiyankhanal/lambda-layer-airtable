@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "airtable": "^0.12.2",
+    "xlsx": "^0.18.5"
+  }
+}
