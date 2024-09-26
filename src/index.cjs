@@ -1,5 +1,6 @@
 module.exports.handler = async (event) => {
-  const excelFile = event?.excel_file;
+  let excelFile = JSON.parse(event?.body);
+  excelFile = JSON.stringify(excelFile.excel_file);
   try {
     if (!excelFile) {
       return {
@@ -10,8 +11,15 @@ module.exports.handler = async (event) => {
         body: "Missing excel_file query parameter",
       };
     }
+    
+    console.log("Downloading excel file to bufferr...");
     const buffer = await downloadExcelFileToBuffer(excelFile);
+    console.log("Buffer here", buffer);
+
+    console.log("Convert file to airtable");
     const rows = await convertFileIntoAirTable(buffer);
+    console.log("Rows here", rows);
+
     return {
       statusCode: 200,
       headers: {

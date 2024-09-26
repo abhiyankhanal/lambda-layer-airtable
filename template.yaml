@@ -33,6 +33,17 @@ Resources:
       Timeout: 10
       Policies:
         - AWSLambdaBasicExecutionRole
+      Environment:
+        Variables:
+          ADDRESS_BASE_ID: !Sub "tblrIqZqCE8traVpK"
+          API_KEY: !Sub "patEpKazaSEG3jtnx.c2562f5e3cc01897257fac0765872579de738b8e98aa216dd65209a3d31d0cfd"
+          BASE_ID: !Sub "appO56WeZ7NuRAQn6"
+          CONTACT_BASE_ID: !Sub "tbluIduGmCLHiKMN2"
+          EMAIL_BASE_ID: !Sub "tblTlnJWr3hEPOQ2X"
+          PHONE_BASE_ID: !Sub "tblJctmyWw4xni6nM"
+          PROPERTY_BASE_ID: !Sub "tblLPGq49pjO9pZY1"
+          PROPERTY_HOLDING_COMPANY_BASE_ID: !Sub "tblQyJUMmGscpOhEp"
+          
       Events:
         ReonomyUploadPostApi:
           Type: Api
