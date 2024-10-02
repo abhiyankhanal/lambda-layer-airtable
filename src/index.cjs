@@ -1,6 +1,6 @@
 module.exports.handler = async (event) => {
   let excelFile = JSON.parse(event?.body);
-  excelFile = JSON.stringify(excelFile.excel_file);
+  excelFile = excelFile.excel_file;
   try {
     if (!excelFile) {
       return {
